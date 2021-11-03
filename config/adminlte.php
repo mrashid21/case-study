@@ -321,7 +321,7 @@ return [
         [
             'text'        => 'admin',
             'icon'        => 'fas fa-cogs',
-            'can'         => ['roles-list', 'users-list'],
+            'can'         => ['roles-list', 'users-list', 'employees-list'],
             'label_color' => 'success',
             'submenu'     => [
                 [

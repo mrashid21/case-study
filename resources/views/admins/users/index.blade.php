@@ -24,7 +24,7 @@
                     <td>{{ $user->email }}</td>
                     <td>
                         {{-- <a class="btn btn-sm btn-primary " href="./{{ $item->code }}"><i class="fas fa-file-alt"></i></a> --}}
-                        @can('users-edit')
+                        @can(['users-edit', 'employees-edit'])
                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i></a>
                         @if(auth()->user()->id != $user->id)
                         @can('users-delete')

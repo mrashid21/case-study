@@ -5,9 +5,11 @@
     <div class="card">
         <div class="card-header">
             <h5 class="card-title"><i class="fa fa-users"></i> Employees</h5>
+            @can('employees-create')
             <span class="float-right">
                 <a href="{{ route('employees.create') }}" class="btn btn-sm btn-success"><i class="fas fa-plus"></i></a>
             </span>
+            @endcan
         </div>
         <div class="card-body">
             <div class="col-12">
@@ -29,7 +31,7 @@
                         <td>Emp No</td>
                         <td>Email</td>
                         <td>Location</td>
-                        @can('users-edit')
+                        @can('employees-edit')
                         <td>Action</td>
                         @endcan
                     </thead>
@@ -40,10 +42,10 @@
                         <td>{{ $employee->email }}</td>
                         <td>{{ ($employee->details)?$employee->details->address->name:'' }}</td>
                         <td>
-                            @can('users-edit')
+                            @can('employees-edit')
                             <a href="{{ route('employees.edit', $employee->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-pencil-alt"></i></a>
                             @if(auth()->user()->id != $employee->id)
-                            @can('users-delete')
+                            @can('employees-delete')
                             <button type="button" class="btn btn-sm btn-danger sa-warning" data-title="Employee" data-route="employees" data-id="{{ $employee->id }}" data-toggle="modal" data-target="#modal-delete">
                               <i class="fa fa-trash"></i>
                             </button>
