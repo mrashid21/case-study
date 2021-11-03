@@ -354,7 +354,7 @@ return [
                 [
                     'text'        => 'deleted',
                     'url'         => 'emp/history',
-                    'can'         => ['users-delete'],
+                    'can'         => ['employees-delete'],
                 ],
             ],
         ],

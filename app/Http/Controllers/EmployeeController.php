@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Model\EmpDetail;
+use Auth;
 
 class EmployeeController extends Controller
 {

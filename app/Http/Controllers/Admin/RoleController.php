@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Permission;
 use Spatie\Permission\Models\Role;
 use DB;
+use Auth;
 
 class RoleController extends Controller
 {
@@ -18,7 +19,11 @@ class RoleController extends Controller
     public function index()
     {
         //
-        $roles = Role::all();
+        if(auth::user()->hasRole('superadmin')) {
+            $roles = Role::all();
+        } else {
+            $roles = Role::where('name', '!=', 'superadmin')->get();
+        }
         return view('admins.roles.index', compact('roles'));
     }
 

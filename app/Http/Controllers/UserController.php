@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use Spatie\Permission\Models\Role;
+use Auth;
 
 
 class UserController extends Controller
@@ -18,7 +19,11 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        if(auth::user()->hasRole('superadmin')) {
+            $users = User::all();
+        } else {
+            $users = User::role(['employee','employer'])->get();
+        }
         return view('admins.users.index', compact('users'));
     }
 
