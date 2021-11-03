@@ -56,7 +56,7 @@ class EmployeeController extends Controller
             'confirm-password' => 'same:password|required_if:password,!=,null',
             'roles' => 'required',
         ]);
-        
+
         $input = $request->all();
         if($input['password']!=null) {
             $input['password'] = Hash::make($input['password']);
@@ -65,6 +65,10 @@ class EmployeeController extends Controller
         }
         $user = User::create($input);
         $user->assignRole($input['roles']);
+        $detail = [];
+        $detail['emp_num'] = $input['emp_num'];
+        $detail['address_id'] = $input['address_id'];
+        EmpDetail::updateOrCreate(['user_id' => $user->id], $detail);
         return redirect()->route('employees.index')
             ->with('toast_success', 'User created successfully');
     }

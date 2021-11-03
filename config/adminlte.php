@@ -321,7 +321,7 @@ return [
         [
             'text'        => 'admin',
             'icon'        => 'fas fa-cogs',
-            'can' => ['roles-list', 'users-list'],
+            'can'         => ['roles-list', 'users-list'],
             'label_color' => 'success',
             'submenu'     => [
                 [
@@ -354,6 +354,7 @@ return [
                 [
                     'text'        => 'deleted',
                     'url'         => 'emp/history',
+                    'can'         => ['users-delete'],
                 ],
             ],
         ],
@@ -361,6 +362,7 @@ return [
             'text'        => 'addresses',
             'url'         => 'emp/addresses',
             'icon'        => 'fas fa-fw fa-search-location',
+            'can'         => ['addresses-list'],
             'label_color' => 'success',
         ],
     ],

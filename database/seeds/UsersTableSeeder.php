@@ -27,5 +27,21 @@ class UsersTableSeeder extends Seeder
         ]);
 
         $mradmin->assignRole([$role->id]);
+
+        $employer = User::create([
+            'name' => 'MR.EMPLOYER',
+            'email' => 'employer@emp.com',
+            'password' => Hash::make('secretagent')
+        ]);
+
+        $employer->assignRole('employer');
+
+        $employee = User::create([
+            'name' => 'MR.EMPLOYEE',
+            'email' => 'employee@emp.com',
+            'password' => Hash::make('secretagent')
+        ]);
+
+        $employee->assignRole('employee');
     }
 }

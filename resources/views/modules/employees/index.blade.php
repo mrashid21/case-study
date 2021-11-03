@@ -29,7 +29,9 @@
                         <td>Emp No</td>
                         <td>Email</td>
                         <td>Location</td>
+                        @can('users-edit')
                         <td>Action</td>
+                        @endcan
                     </thead>
                     @foreach($employees as $key => $employee)
                     <tbody>

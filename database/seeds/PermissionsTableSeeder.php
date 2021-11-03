@@ -14,11 +14,12 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         //
-
         $groups = [
             'users',
             'roles',
-            'employees'
+            'employees',
+            'employers',
+            'addresses'
         ];
 
         foreach ($groups as $group) {
@@ -33,7 +34,13 @@ class PermissionsTableSeeder extends Seeder
         }
 
         $employee = Role::create(['name' => 'employee']);
-        $permissions = Permission::where('name', 'employees-view')->pluck('id', 'id');
-        $employee->syncPermissions($permissions);
+        $employee_permissions = Permission::where('name', 'employees-view')->pluck('id', 'id');
+        $employee->syncPermissions($employee_permissions);
+
+        $employer = Role::create(['name' => 'employer']);
+        $employer_permissions = Permission::where('name', 'like', 'employees%')
+            // ->where('name', 'like', 'addresses%')
+            ->where('parent_id', '!=', null)->pluck('id', 'id');
+        $employer->syncPermissions($employer_permissions);
     }
 }
