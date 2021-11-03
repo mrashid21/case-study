@@ -14,6 +14,7 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         //
+
         $groups = [
             'users',
             'roles',
@@ -28,6 +29,11 @@ class PermissionsTableSeeder extends Seeder
             Permission::create(['parent_id' => $group_id->id, 'name' => $group . '-create']);
             Permission::create(['parent_id' => $group_id->id, 'name' => $group . '-edit']);
             Permission::create(['parent_id' => $group_id->id, 'name' => $group . '-delete']);
+            Permission::create(['parent_id' => $group_id->id, 'name' => $group . '-history']);
         }
+
+        $employee = Role::create(['name' => 'employee']);
+        $permissions = Permission::where('name', 'employees-view')->pluck('id', 'id');
+        $employee->syncPermissions($permissions);
     }
 }
