@@ -56,9 +56,9 @@ class EmployeeController extends Controller
             'confirm-password' => 'same:password|required_if:password,!=,null',
             'roles' => 'required',
         ]);
-
+        dd($request);
         $input = $request->all();
-        if($request->has('password')) {
+        if($input['password']!=null) {
             $input['password'] = Hash::make($input['password']);
         } else {
             $input['password'] = Hash::make('secretagent');
