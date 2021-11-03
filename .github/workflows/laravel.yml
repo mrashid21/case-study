@@ -16,8 +16,6 @@ jobs:
       with:
         php-version: '7.4'
     - uses: actions/checkout@v2
-    - name: redirectory example
-      run: cd emp
     - name: Copy .env
       run: cp .env.example .env
     - name: Install Dependencies
